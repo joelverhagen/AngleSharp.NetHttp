@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -8,7 +9,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using AngleSharp;
+using AngleSharp.Html;
 using AngleSharp.Network;
+using AngleSharp.Services.Default;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NetHttpMethod = System.Net.Http.HttpMethod;
@@ -19,21 +22,21 @@ namespace Knapcode.AngleSharp.NetHttp.Tests
     [TestClass]
     public class HttpClientRequesterTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Unit")]
         public void SupportsHttp()
         {
             // ARRANGE, ACT, ASSERT
             new TestState().Target.SupportsProtocol("HTTP").Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Unit")]
         public void SupportsHttps()
         {
             // ARRANGE, ACT, ASSERT
             new TestState().Target.SupportsProtocol("HTTPS").Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Unit")]
         public async Task RequestWithoutContent()
         {
             // ARRANGE
@@ -53,7 +56,7 @@ namespace Knapcode.AngleSharp.NetHttp.Tests
             ts.HttpRequestMessage.Headers.Single(p => p.Key == "Cookie").Value.ShouldBeEquivalentTo(new[] { "foo=bar" });
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Unit")]
         public async Task RequestWithContent()
         {
             // ARRANGE
@@ -76,7 +79,7 @@ namespace Knapcode.AngleSharp.NetHttp.Tests
             ts.HttpRequestMessage.Headers.Single(p => p.Key == "Cookie").Value.ShouldBeEquivalentTo(new[] { "foo=bar" });
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Unit")]
         public async Task ResponseWithContent()
         {
             // ARRANGE
@@ -97,7 +100,7 @@ namespace Knapcode.AngleSharp.NetHttp.Tests
             new StreamReader(response.Content, Encoding.UTF8).ReadToEnd().Should().Be("\"response\"");
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Unit")]
         public async Task ResponseWithoutContent()
         {
             // ARRANGE
@@ -114,6 +117,24 @@ namespace Knapcode.AngleSharp.NetHttp.Tests
             response.Headers["X-Powered-By"].Should().Be("Magic");
             response.Headers["X-CSV"].Should().Be("foo, bar");
             response.Content.Should().BeNull();
+        }
+
+        [TestMethod, TestCategory("Integration")]
+        public async Task EndToEnd()
+        {
+            // ARRANGE
+            var httpClient = new HttpClient();
+            var requester = new HttpClientRequester(httpClient);
+            var configuration = new Configuration(new[] { new LoaderService(new[] { requester }) });
+            var context = BrowsingContext.New(configuration);
+            var request = DocumentRequest.Get(Url.Create("http://httpbin.org/html"));
+
+            // ACT
+            var response = await context.Loader.LoadAsync(request, CancellationToken.None);
+            var document = await context.OpenAsync(response, CancellationToken.None);
+
+            // ASSERT
+            document.QuerySelector("h1").ToHtml().Should().Be("<h1>Herman Melville - Moby-Dick</h1>");
         }
 
         private class TestState

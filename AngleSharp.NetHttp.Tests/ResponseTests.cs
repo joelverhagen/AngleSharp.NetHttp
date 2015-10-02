@@ -8,7 +8,7 @@ namespace Knapcode.AngleSharp.NetHttp.Tests
     [TestClass]
     public class ResponseTests
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Unit")]
         public void DisposesContent()
         {
             // ARRANGE
@@ -22,7 +22,7 @@ namespace Knapcode.AngleSharp.NetHttp.Tests
             stream.Disposed.Should().BeTrue();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Unit")]
         public void DisposesNothingWhenContentIsNull()
         {
             // ARRANGE
