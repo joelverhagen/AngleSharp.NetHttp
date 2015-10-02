@@ -1,5 +1,9 @@
 # AngleSharp.NetHttp
 
+Use `System.Net.Http.HttpClient` with AngleSharp. The default implementation uses `System.Net.HttpWebRequest`.
+
+Depends on AngleSharp and .NET 4.5.
+
 ## Install
 
 ```
