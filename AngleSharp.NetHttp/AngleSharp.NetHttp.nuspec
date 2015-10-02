@@ -1,0 +1,22 @@
+﻿<?xml version="1.0"?>
+
+<package>
+  <metadata>
+    <id>Knapcode.AngleSharp.NetHttp</id>
+    <version>0.1.0</version>
+    <title>AngleSharp.NetHttp</title>
+    <authors>Joel Verhagen</authors>
+    <licenseUrl>https://github.com/joelverhagen/AngleSharp.NetHttp/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/joelverhagen/AngleSharp.NetHttp</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Use HttpClient with AngleSharp</description>
+    <releaseNotes>
+      * 0.1.0 Initial release.
+    </releaseNotes>
+    <copyright>Copyright (c) 2015 Joel Verhagen</copyright>
+    <tags>anglesharp html httpclient async</tags>
+    <dependencies>
+      <dependency id="AngleSharp" version="0.9.2" />
+    </dependencies>
+  </metadata>
+</package>

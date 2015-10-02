@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngleSharp.NetHttp", "AngleSharp.NetHttp\AngleSharp.NetHttp.csproj", "{0CC5BDE3-7A89-4CD9-9215-5C0C5BEA38EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngleSharp.NetHttp.Tests", "AngleSharp.NetHttp.Tests\AngleSharp.NetHttp.Tests.csproj", "{4F380524-E829-4F65-86B3-C527375007F3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0CC5BDE3-7A89-4CD9-9215-5C0C5BEA38EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CC5BDE3-7A89-4CD9-9215-5C0C5BEA38EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CC5BDE3-7A89-4CD9-9215-5C0C5BEA38EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CC5BDE3-7A89-4CD9-9215-5C0C5BEA38EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F380524-E829-4F65-86B3-C527375007F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F380524-E829-4F65-86B3-C527375007F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F380524-E829-4F65-86B3-C527375007F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F380524-E829-4F65-86B3-C527375007F3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
